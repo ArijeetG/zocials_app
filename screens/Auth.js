@@ -23,9 +23,11 @@ export default function Auth({navigation}) {
     axios
       .post('http://localhost:8000/signin', {User: email, Password: password})
       .then(async response => {
-        console.log(response.data);
+        console.log('Auth', response.data);
         try {
           await AsyncStorage.setItem('userToken', response.data['token']);
+          await AsyncStorage.setItem('email', response.data['email']);
+          await AsyncStorage.setItem('username', response.data['username']);
         } catch (error) {
           console.log(error);
         }

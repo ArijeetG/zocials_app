@@ -3,6 +3,6 @@ import React, {useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomNavBar from '../components/BottomNavBar';
 export default function LandingPage({token}) {
-  console.log(token);
+  console.log('Landing Page', token);
   return <BottomNavBar />;
 }

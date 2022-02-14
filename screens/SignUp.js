@@ -33,7 +33,7 @@ export default function SignUp({navigation}) {
         Password: password,
       })
       .then(response => {
-        console.log(response.data);
+        console.log('Signup', response.data);
       })
       .catch(err => {
         console.log(err);
