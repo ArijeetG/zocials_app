@@ -31,7 +31,13 @@ useEffect(() => {
     getTheme();
 }, [])
 
-const toggleTheme = async () => {
+const toggleTheme = async (type) => {
+    if(type)
+    {
+        setTheme(type);
+        await AsyncStorage.setItem('theme', type)
+        return true;
+    }
     if(theme==='light')
     {
         setTheme('dark');

@@ -8,9 +8,14 @@
 
 import React from 'react';
 import Home from './screens/Home';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const App = () => {
-  return <Home />;
+  return(
+    <ThemeProvider>
+    <Home />
+    </ThemeProvider>
+  )
 };
 
 export default App;
