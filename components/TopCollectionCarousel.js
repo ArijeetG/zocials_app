@@ -37,7 +37,7 @@ export default class TopCollectionCarousel extends Component {
   }
   _renderItem({item}) {
     return (
-      <TouchableOpacity style={styles.itemContainer} activeOpacity={0.9}>
+      <TouchableOpacity style={styles.itemContainer} activeOpacity={1}>
         <Image
           source={item.src}
           style={{

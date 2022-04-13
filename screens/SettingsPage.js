@@ -11,7 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../components/Header';
-export default function SettingsPage() {
+export default function SettingsPage({navigation}) {
   const [email, setEmail] = React.useState('');
   const getEmail = async () => {
     const fetchEmail = await AsyncStorage.getItem('email');
@@ -47,7 +47,9 @@ export default function SettingsPage() {
       </View>
       <Text style={style.subHeading}>General</Text>
       <View style={style.settingsContainer}>
-        <TouchableOpacity style={style.settings}>
+        {/* <TouchableOpacity
+          style={style.settings}
+          onPress={() => navigation.navigate('Privacy')}>
           <View
             style={{
               flexDirection: 'row',
@@ -62,8 +64,10 @@ export default function SettingsPage() {
             <Text style={style.settingText}>Privacy</Text>
           </View>
           <MaterialCommunityIcons name="chevron-right" size={20} />
-        </TouchableOpacity>
-        <TouchableOpacity style={style.settings}>
+        </TouchableOpacity> */}
+        <TouchableOpacity
+          style={style.settings}
+          onPress={() => navigation.navigate('Account')}>
           <View
             style={{
               flexDirection: 'row',
@@ -136,6 +140,11 @@ export default function SettingsPage() {
             paddingHorizontal: 20,
             paddingVertical: 10,
             borderRadius: 30,
+          }}
+          onPress={async () => {
+            await AsyncStorage.removeItem('userToken');
+            console.log(await AsyncStorage.getItem('userToken'));
+            navigation.replace('Signin');
           }}>
           <Text style={{fontWeight: '600', color: 'white'}}> Logout </Text>
         </TouchableOpacity>

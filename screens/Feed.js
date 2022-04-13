@@ -22,15 +22,16 @@ export default function Feed({navigation}) {
   return (
     <SafeAreaView>
       {/* <View style={{maxHeight: Dimensions.get('window').height}}> */}
-      <Header />
       <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{
-          //   height: Dimensions.get('window').height,
-          maxHeight: 1000,
-          marginTop: 10,
-          paddingVertical: 10,
-        }}>
+      // showsVerticalScrollIndicator={false}
+      // style={{
+      //   //   height: Dimensions.get('window').height,
+      //   maxHeight: 1000,
+      //   marginTop: 10,
+      //   paddingVertical: 10,
+      // }}
+      >
+        <Header />
         <View style={styles.categories}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Pills text={'Collectibles'} />

@@ -1,7 +1,7 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-export default function Header() {
+export default function Header({add = false}) {
   return (
     <View
       style={{
@@ -18,7 +18,11 @@ export default function Header() {
         }}
       />
       <TouchableOpacity>
-        <MaterialIcons name="search" size={25} />
+        {add ? (
+          <MaterialIcons name="add-to-photos" size={25} />
+        ) : (
+          <MaterialIcons name="search" size={25} />
+        )}
       </TouchableOpacity>
     </View>
   );

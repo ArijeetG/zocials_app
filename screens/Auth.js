@@ -8,18 +8,22 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  BackHandler,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
+// import {CirclesLoader} from 'react-native-indicator';
 
 export default function Auth({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [emailSelection, setEmailSelection] = React.useState(false);
   const [passwordSelection, setPasswordSelection] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const callLogin = () => {
+    setLoading(true);
     axios
       .post('http://localhost:8000/signin', {User: email, Password: password})
       .then(async response => {
@@ -31,9 +35,14 @@ export default function Auth({navigation}) {
         } catch (error) {
           console.log(error);
         }
-        navigation.navigate('LandingPage');
+        setLoading(false);
+        navigation.replace('LandingPage');
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        setLoading(false);
+        navigation.replace('LandingPage');
+        console.log(error);
+      });
   };
 
   return (
@@ -97,7 +106,11 @@ export default function Auth({navigation}) {
       </View>
       <View style={{alignItems: 'flex-end'}}>
         <TouchableOpacity style={styles.signInButton} onPress={callLogin}>
-          <Text style={{color: '#fff', fontSize: 15}}>Sign In</Text>
+          {!loading ? (
+            <Text style={{color: '#fff', fontSize: 15}}>Sign In</Text>
+          ) : (
+            <Text style={{color: '#fff', fontSize: 15}}>Loading</Text>
+          )}
         </TouchableOpacity>
       </View>
       {/* <LinearGradient

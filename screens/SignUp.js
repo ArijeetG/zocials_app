@@ -99,7 +99,6 @@ export default function SignUp({navigation}) {
         <TextInput
           placeholder="Email"
           style={emailSelection ? styles.inputBoxSelected : styles.inputBox}
-          placeholder="Email"
           onFocus={() => {
             setEmailSelection(true);
             setUserSelection(false);
